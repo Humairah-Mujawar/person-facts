@@ -1,5 +1,6 @@
 const express = require('express')
 require('dotenv').config();
+const path = require("path")
 const app = express();
 
 app.use(function(req, res, next){
@@ -9,7 +10,9 @@ app.use(function(req, res, next){
     next()   
 })
 
-app.get('/', (req, res) => res.send('Try to go to /hello'));
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "index.html"));
+});
 
 app.get('/hello', (req, res) => {
     const n = req.query.n
